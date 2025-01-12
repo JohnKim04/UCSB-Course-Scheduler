@@ -64,9 +64,8 @@ function TermDropZone({ year, term }: { year: number; term: Term }) {
 
   const totalCredits = courses.reduce((sum, course) => sum + course.credits, 0)
 
-  return (
+  return drop(
     <div
-      ref={drop}
       className={`p-4 rounded-lg border-2 border-dashed min-h-[200px] ${
         isOver ? 'border-primary bg-primary/10' : 'border-muted'
       }`}

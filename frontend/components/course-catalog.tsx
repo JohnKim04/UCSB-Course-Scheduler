@@ -53,8 +53,8 @@ function CourseCard({ course }: { course: Course }) {
     }),
   }))
 
-  return (
-    <div ref={drag} style={{ opacity: isDragging ? 0.5 : 1 }}>
+  return drag(
+    <div style={{ opacity: isDragging ? 0.5 : 1 }}>
       <Card className="mb-2">
         <CardContent className="p-4">
           <div className="flex justify-between items-start">
