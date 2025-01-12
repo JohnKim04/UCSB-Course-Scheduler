@@ -22,6 +22,7 @@
       "instructionTypeSecondary": "DIS",
       "onLineCourse": false,
       "deptCode": "CMPSC",
+      "prereqs": ["CMPSC 8"],
       "generalEducation": [],
       "classSections": []
     },
@@ -44,6 +45,7 @@
       "instructionTypeSecondary": "DIS",
       "onLineCourse": false,
       "deptCode": "CMPSC",
+      "prereqs": ["MATH 3A", "CMPSC 8"],
       "generalEducation": [],
       "classSections": []
     },
@@ -66,6 +68,7 @@
       "instructionTypeSecondary": "DIS",
       "onLineCourse": false,
       "deptCode": "CMPSC",
+      "prereqs": ["MATH 3B", "CMPSC 8"],
       "generalEducation": [],
       "classSections": []
     },
@@ -88,6 +91,7 @@
       "instructionTypeSecondary": "DIS",
       "onLineCourse": false,
       "deptCode": "CMPSC",
+      "prereqs": ["CMPSC 16", "MATH 4A"],
       "generalEducation": [],
       "classSections": []
     },
@@ -110,6 +114,7 @@
       "instructionTypeSecondary": null,
       "onLineCourse": false,
       "deptCode": "CMPSC",
+      "prereqs": [],
       "generalEducation": [],
       "classSections": []
     },
@@ -132,6 +137,7 @@
       "instructionTypeSecondary": "DIS",
       "onLineCourse": false,
       "deptCode": "CMPSC",
+      "prereqs": ["CMPSC 24", "MATH 4B", "MATH 6A"],
       "generalEducation": [],
       "classSections": []
     },
@@ -154,6 +160,7 @@
       "instructionTypeSecondary": null,
       "onLineCourse": false,
       "deptCode": "CMPSC",
+      "prereqs": [],
       "generalEducation": [],
       "classSections": []
     },
@@ -176,6 +183,7 @@
       "instructionTypeSecondary": null,
       "onLineCourse": false,
       "deptCode": "CMPSC",
+      "prereqs": [],
       "generalEducation": [],
       "classSections": []
     },
@@ -198,6 +206,7 @@
       "instructionTypeSecondary": null,
       "onLineCourse": false,
       "deptCode": "CMPSC",
+      "prereqs": [],
       "generalEducation": [],
       "classSections": []
     },
@@ -220,6 +229,7 @@
       "instructionTypeSecondary": null,
       "onLineCourse": false,
       "deptCode": "CMPSC",
+      "prereqs": [],
       "generalEducation": [],
       "classSections": []
     },
@@ -242,6 +252,7 @@
       "instructionTypeSecondary": "DIS",
       "onLineCourse": true,
       "deptCode": "CMPSC",
+      "prereqs": [],
       "generalEducation": [
         {
           "geCode": "C  ",
