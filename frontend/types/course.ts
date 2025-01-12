@@ -18,5 +18,5 @@ export type PlanYear = {
   terms: YearPlan
 }
 
-export type Department = 'CS' | 'ASAM' | 'ARTH' | 'ENG' | 'PHYS' | 'MUSIC' | 'All'
+export type Department = 'CS' | 'ASAM' | 'ARTH' | 'ENG' | 'PHYS' | 'MUSIC' | 'MATH' | 'PSTAT' | 'WRIT' | 'All'
 

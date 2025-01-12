@@ -16,8 +16,21 @@ import {
 } from '@/components/ui/select'
 import { usePlanStore } from '../store/plan-store'
 
-const departments: Department[] = ['All', 'CS', 'ASAM', 'ARTH', 'ENG', 'PHYS', 'MUSIC']
-const terms = ['All', 'Fall', 'Winter', 'Spring', 'Summer']
+const departments: Department[] = ['All', 'CS', 'ASAM', 'ARTH', 'ENG', 'PHYS', 'MUSIC', 'MATH', 'PSTAT', 'WRIT']
+const majors = ['All', 'Computer Science', 'Engineering', 'Mathematics', 'Physics', 'Biology']
+
+const getCategoryColor = (category: string) => {
+  switch (category) {
+    case 'Core Course':
+      return 'bg-[#FDEADB]'
+    case 'Elective':
+      return 'bg-[#E7F3E0]'
+    case 'General Education':
+      return 'bg-[#FCE3F4]'
+    default:
+      return 'bg-gray-100'
+  }
+}
 
 function CourseCard({ course }: { course: Course }) {
   const [{ isDragging }, drag] = useDrag(() => ({
@@ -32,14 +45,16 @@ function CourseCard({ course }: { course: Course }) {
     <div ref={drag} style={{ opacity: isDragging ? 0.5 : 1 }}>
       <Card className="mb-2">
         <CardContent className="p-4">
-          <div className="flex justify-between">
+          <div className="flex justify-between items-start">
             <div>
               <h3 className="font-semibold">{course.code}</h3>
               <p className="text-sm text-muted-foreground">{course.title}</p>
             </div>
-            <div className="text-right">
-              <span className="text-sm">{course.credits} credits</span>
-              <div className="text-xs text-muted-foreground">{course.category}</div>
+            <div className="text-right flex flex-col items-end">
+              <span className="text-sm mb-1">{course.credits} credits</span>
+              <span className={`text-xs px-2 py-1 rounded-md whitespace-nowrap ${getCategoryColor(course.category)}`}>
+                {course.category}
+              </span>
             </div>
           </div>
         </CardContent>
@@ -53,10 +68,11 @@ export function CourseCatalog() {
     courses,
     searchQuery,
     selectedDepartment,
-    selectedTerm,
+    selectedMajor,
+    coursesInPlan,
     setSearchQuery,
     setSelectedDepartment,
-    setSelectedTerm,
+    setSelectedMajor,
   } = usePlanStore()
 
   const filteredCourses = useMemo(() => {
@@ -66,9 +82,12 @@ export function CourseCatalog() {
         course.title.toLowerCase().includes(searchQuery.toLowerCase())
       const matchesDepartment =
         selectedDepartment === 'All' || course.code.startsWith(selectedDepartment)
-      return matchesSearch && matchesDepartment
+      const matchesMajor =
+        selectedMajor === 'All' || course.major === selectedMajor
+      const isNotInPlan = !coursesInPlan.has(course.id)
+      return matchesSearch && matchesDepartment && matchesMajor && isNotInPlan
     })
-  }, [courses, searchQuery, selectedDepartment])
+  }, [courses, searchQuery, selectedDepartment, selectedMajor, coursesInPlan])
 
   return (
     <div className="p-4">
@@ -99,14 +118,14 @@ export function CourseCatalog() {
               ))}
             </SelectContent>
           </Select>
-          <Select value={selectedTerm} onValueChange={setSelectedTerm}>
+          <Select value={selectedMajor} onValueChange={setSelectedMajor}>
             <SelectTrigger className="w-[180px]">
-              <SelectValue placeholder="Term" />
+              <SelectValue placeholder="Major" />
             </SelectTrigger>
             <SelectContent>
-              {terms.map((term) => (
-                <SelectItem key={term} value={term}>
-                  {term}
+              {majors.map((major) => (
+                <SelectItem key={major} value={major}>
+                  {major}
                 </SelectItem>
               ))}
             </SelectContent>
