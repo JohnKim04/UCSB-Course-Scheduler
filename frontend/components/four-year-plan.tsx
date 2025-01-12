@@ -15,9 +15,9 @@ import { usePlanStore } from '../store/plan-store'
 
 const getCategoryColor = (category: string) => {
   switch (category) {
-    case 'Core Course':
+    case 'Lower Division':
       return 'bg-[#FDEADB]'
-    case 'Elective':
+    case 'Upper Division':
       return 'bg-[#E7F3E0]'
     case 'General Education':
       return 'bg-[#FCE3F4]'

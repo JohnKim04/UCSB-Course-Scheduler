@@ -32,6 +32,18 @@ const departments: Department[] = [
 ]
 const terms = ['All', 'Fall', 'Winter', 'Spring', 'Summer']
 
+const getCategoryColor = (category: string) => {
+  switch (category) {
+    case 'Lower Division':
+      return 'bg-[#FDEADB]'
+    case 'Upper Division':
+      return 'bg-[#E7F3E0]'
+    case 'General Education':
+      return 'bg-[#FCE3F4]'
+    default:
+      return 'bg-gray-100'
+  }
+}
 function CourseCard({ course }: { course: Course }) {
   const [{ isDragging }, drag] = useDrag(() => ({
     type: 'COURSE',
@@ -72,7 +84,7 @@ export function CourseCatalog() {
     coursesInPlan,
     setSearchQuery,
     setSelectedDepartment,
-    setSelectedMajor,
+    setSelectedTerm,
   } = usePlanStore()
 
   const filteredCourses = useMemo(() => {
@@ -116,14 +128,14 @@ export function CourseCatalog() {
               ))}
             </SelectContent>
           </Select>
-          <Select value={selectedMajor} onValueChange={setSelectedMajor}>
+          <Select value={selectedTerm} onValueChange={setSelectedTerm}>
             <SelectTrigger className="w-[180px]">
               <SelectValue placeholder="Major" />
             </SelectTrigger>
             <SelectContent>
-              {majors.map((major) => (
-                <SelectItem key={major} value={major}>
-                  {major}
+              {terms.map((term) => (
+                <SelectItem key={term} value={term}>
+                  {term}
                 </SelectItem>
               ))}
             </SelectContent>

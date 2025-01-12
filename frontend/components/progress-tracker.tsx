@@ -17,7 +17,7 @@ export function ProgressTracker() {
   const coreCourses = [
     { code: 'CS32', title: 'Data Structures' },
     { code: 'CS64', title: 'Computer Organization' },
-    { code: 'CS130A', title: 'Data Structures and Algorithms II' },
+    { code: 'CMPSC 130A', title: 'Data Structures and Algorithms II' },
     { code: 'CS130B', title: 'Data Structures and Algorithms III' },
     { code: 'CS16', title: 'Problem Solving I' },
     { code: 'CS24', title: 'Problem Solving II' },
