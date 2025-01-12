@@ -11,10 +11,10 @@ export default function Page() {
     <DndProvider backend={HTML5Backend}>
       <div className="flex flex-col min-h-screen">
         {/* Header */}
-        <header className="bg-white border-b border-gray-200 shadow-sm p-3.5 flex items-center justify-between">
-          {/* Left side: Title */}
-          <h1 className="text-3xl font-bold text-gray-900">GauchoGraduate</h1>
+        <header className="bg-gray-150 border-b border-gray-300 shadow-md p-3.5 flex items-center justify-between">
+          <h1 className="text-3xl font-bold text-black-600">GauchoGraduate</h1>
         </header>
+
 
 
         {/* Main Content */}
