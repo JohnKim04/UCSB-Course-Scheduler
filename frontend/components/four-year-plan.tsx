@@ -1,15 +1,7 @@
 'use client'
 
-import { useState } from 'react'
 import { useDrop } from 'react-dnd'
 import { Card, CardContent } from '@/components/ui/card'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
 import { Course, Term } from '../types/course'
 import { usePlanStore } from '../store/plan-store'
 
@@ -31,13 +23,13 @@ function CourseCard({ course, onRemove }: { course: Course; onRemove: () => void
 
   return (
     <Card
-      className={`mb-2 cursor-pointer hover:bg-muted/50 transition-colors ${categoryColor}`}
+      className={`mb-1 cursor-pointer hover:bg-muted/50 transition-colors ${categoryColor}`}
       onClick={onRemove}
     >
-      <CardContent className="p-2">
-        <div className="flex justify-between items-center">
+      <CardContent className="p-1">
+        <div className="flex justify-between items-center text-sm">
           <span className="font-medium">{course.code}</span>
-          <span className="text-sm text-muted-foreground">{course.credits} cr</span>
+          <span className="text-xs text-muted-foreground">{course.credits} cr</span>
         </div>
       </CardContent>
     </Card>
@@ -66,11 +58,11 @@ function TermDropZone({ year, term }: { year: number; term: Term }) {
 
   return drop(
     <div
-      className={`p-4 rounded-lg border-2 border-dashed min-h-[200px] ${
+      className={`p-2 rounded-lg border-2 border-dashed min-h-[150px] ${
         isOver ? 'border-primary bg-primary/10' : 'border-muted'
       }`}
     >
-      <h4 className="font-medium mb-2">{term}</h4>
+      <h4 className="font-medium mb-1 text-sm">{term}</h4>
       {courses.map((course) => (
         <CourseCard
           key={course.id}
@@ -78,42 +70,27 @@ function TermDropZone({ year, term }: { year: number; term: Term }) {
           onRemove={() => handleRemoveCourse(course)}
         />
       ))}
-      <div className="mt-4 text-sm font-medium">Total Credits: {totalCredits}</div>
+      <div className="mt-2 text-xs font-medium">Total Credits: {totalCredits}</div>
     </div>
   )
 }
 
 export function FourYearPlan() {
-  const [selectedYear, setSelectedYear] = useState(1)
   const terms: Term[] = ['Fall', 'Winter', 'Spring', 'Summer']
 
   return (
-    <div className="p-4">
-      <div className="flex items-center gap-4 mb-4">
-        <h2 className="text-lg font-semibold">Four-Year Plan</h2>
-        <Select
-          value={selectedYear.toString()}
-          onValueChange={(value) => setSelectedYear(parseInt(value))}
-        >
-          <SelectTrigger className="w-[180px]">
-            <SelectValue placeholder="Select Year" />
-          </SelectTrigger>
-          <SelectContent>
-            {[1, 2, 3, 4].map((year) => (
-              <SelectItem key={year} value={year.toString()}>
-                Year {year}
-              </SelectItem>
+    <div className="p-2 space-y-6">
+      <h2 className="text-lg font-semibold mb-2">Four-Year Plan</h2>
+      {[1, 2, 3, 4].map((year) => (
+        <div key={year} className="space-y-2">
+          <h3 className="text-base font-semibold">Year {year}</h3>
+          <div className="grid grid-cols-4 gap-2">
+            {terms.map((term) => (
+              <TermDropZone key={`${year}-${term}`} year={year} term={term} />
             ))}
-          </SelectContent>
-        </Select>
-      </div>
-      <h3 className="text-lg font-semibold mt-4 mb-2">Year {selectedYear}</h3>
-      <div className="grid grid-cols-4 gap-4">
-        {terms.map((term) => (
-          <TermDropZone key={`${selectedYear}-${term}`} year={selectedYear} term={term} />
-        ))}
-      </div>
+          </div>
+        </div>
+      ))}
     </div>
   )
 }
-

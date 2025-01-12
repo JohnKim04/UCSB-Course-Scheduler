@@ -14,7 +14,18 @@ export function ProgressTracker() {
     ([code, credits]) => ({ code, credits })
   )
 
-  // Check if a course is completed or planned in any term
+  // Extract upper division electives data
+  const totalElectivesRequired = gradData.Computer_Science.Upper_Division_Major.Major_Field_Electives_Options.Courses_Required
+  const electivesCourses = gradData.Computer_Science.Upper_Division_Major.Major_Field_Electives_Options.Courses
+
+  // Extract science elective data
+  const scienceListA = gradData.Computer_Science.Science_Courses.List_A.Options
+  const scienceListATotal = gradData.Computer_Science.Science_Courses.List_A.Courses
+
+  const scienceListB = gradData.Computer_Science.Science_Courses.List_B.Options
+  const scienceListBTotal = gradData.Computer_Science.Science_Courses.List_B.Courses
+
+  // Check if a course is completed or planned
   const isCourseCompletedOrPlanned = (courseCode) => {
     return (
       completedCourses.includes(courseCode) ||
@@ -22,34 +33,22 @@ export function ProgressTracker() {
     )
   }
 
-  // Calculate total credits
-  const totalCredits = yearPlans.reduce((sum, year) => {
-    return sum + Object.values(year.terms).reduce((termSum, courses) => {
-      return termSum + courses.reduce((courseSum, course) => courseSum + course.credits, 0)
-    }, 0)
-  }, 0)
-
   // Helper to calculate progress for courses
-  const calculateProgress = (courses) => {
-    const completed = courses.filter((course) =>
-      isCourseCompletedOrPlanned(course.code)
-    ).length
-    const total = courses.length
-    const percentage = Math.round((completed / total) * 100)
-    return { completed, total, percentage }
+  const calculateProgress = (courses, totalRequired) => {
+    const completed = courses.filter((course) => isCourseCompletedOrPlanned(course)).length
+    const percentage = Math.round((completed / totalRequired) * 100)
+    return { completed, total: totalRequired, percentage }
   }
 
-  // Core courses progress
-  const coreProgress = calculateProgress(coreCourses)
+  // Calculate progress
+  const coreProgress = calculateProgress(coreCourses.map(course => course.code), coreCourses.length)
+  const electivesProgress = calculateProgress(electivesCourses, totalElectivesRequired)
+  const scienceListAProgress = calculateProgress(scienceListA, scienceListATotal)
+  const scienceListBProgress = calculateProgress(scienceListB, scienceListBTotal)
 
   // Helper to render a course list with a checkmark
-  const renderCourseList = (courses, progress) => (
+  const renderCourseList = (courses) => (
     <div className="space-y-2">
-      <div className="flex justify-between items-center mb-2">
-        <span className="font-medium">{progress.completed}/{progress.total} completed</span>
-        <span className="font-medium">{progress.percentage}%</span>
-      </div>
-      <Progress value={progress.percentage} className="h-2 mb-4" />
       {courses.map((course) => {
         const isCompletedOrPlanned = isCourseCompletedOrPlanned(course.code)
 
@@ -74,7 +73,7 @@ export function ProgressTracker() {
   )
 
   return (
-    <div className="p-4 space-y-4 overflow-y-auto max-h-screen">
+    <div className="flex flex-col p-4 space-y-4 max-w-5xl mx-auto overflow-hidden">
       <div>
         <h2 className="text-lg font-semibold mb-2">Total Graduation Progress</h2>
         <div className="text-center mb-2">
@@ -85,12 +84,58 @@ export function ProgressTracker() {
 
       <div>
         <h3 className="font-semibold mb-2">Total Credits</h3>
-        <div className="text-2xl font-bold">{totalCredits}</div>
+        <div className="text-2xl font-bold">{yearPlans.reduce((sum, year) => {
+          return sum + Object.values(year.terms).reduce((termSum, courses) => {
+            return termSum + courses.reduce((courseSum, course) => courseSum + course.credits, 0)
+          }, 0)
+        }, 0)}</div>
       </div>
 
       <div>
         <h3 className="font-semibold mb-2">Core Courses</h3>
-        {renderCourseList(coreCourses, coreProgress)}
+        <div className="space-y-2">
+          <div className="flex justify-between items-center mb-2">
+            <span className="font-medium">{coreProgress.completed}/{coreProgress.total} completed</span>
+            <span className="font-medium">{coreProgress.percentage}%</span>
+          </div>
+          <Progress value={coreProgress.percentage} className="h-2 mb-4" />
+          {renderCourseList(coreCourses)}
+        </div>
+      </div>
+
+      <div>
+        <h3 className="font-semibold mb-2">Upper Division Electives</h3>
+        <div className="space-y-2">
+          <div className="flex justify-between items-center mb-2">
+            <span className="font-medium">{electivesProgress.completed}/{electivesProgress.total} completed</span>
+            <span className="font-medium">{electivesProgress.percentage}%</span>
+          </div>
+          <Progress value={electivesProgress.percentage} className="h-2" />
+        </div>
+      </div>
+
+      <div>
+        <h3 className="font-semibold mb-2">Science Electives</h3>
+        <div>
+          <h4 className="font-medium mb-1">{gradData.Computer_Science.Science_Courses.List_A.Description}</h4>
+          <div className="space-y-2">
+            <div className="flex justify-between items-center mb-2">
+              <span className="font-medium">{scienceListAProgress.completed}/{scienceListAProgress.total} completed</span>
+              <span className="font-medium">{scienceListAProgress.percentage}%</span>
+            </div>
+            <Progress value={scienceListAProgress.percentage} className="h-2" />
+          </div>
+        </div>
+        <div className="mt-4">
+          <h4 className="font-medium mb-1">{gradData.Computer_Science.Science_Courses.List_B.Description}</h4>
+          <div className="space-y-2">
+            <div className="flex justify-between items-center mb-2">
+              <span className="font-medium">{scienceListBProgress.completed}/{scienceListBProgress.total} completed</span>
+              <span className="font-medium">{scienceListBProgress.percentage}%</span>
+            </div>
+            <Progress value={scienceListBProgress.percentage} className="h-2" />
+          </div>
+        </div>
       </div>
     </div>
   )

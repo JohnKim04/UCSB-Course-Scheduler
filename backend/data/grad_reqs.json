@@ -2,7 +2,7 @@
     "Computer_Science": {
         "Total_Units_Required": 180,
         "Preparation_For_The_Major": {
-            "Total_Units": 45,
+            "Total_Units": 56,
             "Courses": {
                 "CMPSC 16": 4,
                 "CMPSC 24": 4,
@@ -14,15 +14,15 @@
                 "MATH 4A": 4,
                 "MATH 4B": 4,
                 "MATH 6A": 4,
-                "PSTAT 120A": 4
+                "PSTAT 120A": 4,
+                "CMPSC 130A": 4,
+                "CMPSC 130B": 4,
+                "ENGR 101": 3
             }
         },
         "Upper_Division_Major": {
             "Total_Units": 67,
             "Required_Courses": {
-                "CMPSC 130A": 4,
-                "CMPSC 130B": 4,
-                "ENGR 101": 3,
                 "Major_Field_Electives": 56
             },
             "Major_Field_Electives_Options": {
@@ -89,12 +89,43 @@
         },
         "Science_Courses": {
             "List_A": {
-                "Units": 8,
-                "Description": "Science Electives - List A"
+                "Courses": 2,
+                "Description": "List A Science (EARTH, GEOG...)",
+                "Options": [
+                    "EARTH 2",
+                    "EARTH 4",
+                    "EARTH 6",
+                    "EARTH 7",
+                    "EARTH 8",
+                    "EARTH 9",
+                    "EARTH 10",
+                    "EARTH 20",
+                    "EARTH 30",
+                    "GEOG 2",
+                    "GEOG 3",
+                    "GEOG 4",
+                    "GEOG 8",
+                    "GEOG 12"
+                ]
             },
             "List_B": {
-                "Units": 12,
-                "Description": "Science Electives - List B"
+                "Courses": 3,
+                "Description": "List B Science (PHYS, CHEM, BIO)",
+                "Options": [
+                    "PHYS 1",
+                    "PHYS 2",
+                    "PHYS 3",
+                    "PHYS 6A",
+                    "PHYS 6B",
+                    "PHYS 6C",
+                    "PHYS 7A",
+                    "PHYS 7B",
+                    "PHYS 7C",
+                    "PHYS 7D",
+                    "CHEM 1A",
+                    "CHEM 1B",
+                    "CHEM 1C"
+                ]
             }
         },
         "General_Education": {

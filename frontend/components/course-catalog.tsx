@@ -141,7 +141,7 @@ export function CourseCatalog() {
             </SelectContent>
           </Select>
         </div>
-        <div className="space-y-2 max-h-[calc(100vh-240px)] overflow-y-auto">
+        <div className="space-y-2 max-h-[calc(100vh-120px)] overflow-y-auto">
           {filteredCourses.map((course) => (
             <CourseCard key={course.id} course={course} />
           ))}
