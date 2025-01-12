@@ -102,7 +102,9 @@
           "geCollege": "L&S "
         }
       ],
-      "classSections": []
+      "classSections": [],
+      "geArea": "F",
+      "specialGeArea": "Writing"
     },
     {
       "quarter": "20241",
@@ -250,7 +252,8 @@
         }
       ],
       "classSections": [],
-      "geArea": "E"
+      "geArea": "F",
+      "specialGeArea": "Writing"
     },
     {
       "quarter": "20241",
@@ -281,7 +284,8 @@
           "geCollege": "ENGR"
         }
       ],
-      "classSections": []
+      "classSections": [],
+      "geArea": "F"
     },
     {
       "quarter": "20241",
@@ -469,7 +473,8 @@
         }
       ],
       "classSections": [],
-      "geArea": "E"
+      "geArea": "F",
+      "specialGeArea": "Writing"
     },
     {
       "quarter": "20241",
@@ -517,7 +522,8 @@
         }
       ],
       "classSections": [],
-      "geArea": "E"
+      "geArea": "F",
+      "specialGeArea": "Writing"
     },
     {
       "quarter": "20241",
@@ -601,7 +607,8 @@
         }
       ],
       "classSections": [],
-      "geArea": "E"
+      "geArea": "F",
+      "specialGeArea": "Writing"
     },
     {
       "quarter": "20241",
@@ -718,7 +725,8 @@
         }
       ],
       "classSections": [],
-      "geArea": "D"
+      "geArea": "F",
+      "specialGeArea": "Writing"
     },
     {
       "quarter": "20241",
@@ -1035,7 +1043,8 @@
           "geCollege": "ENGR"
         }
       ],
-      "classSections": []
+      "classSections": [],
+      "geArea": "F"
     },
     {
       "quarter": "20241",
@@ -2800,7 +2809,8 @@
         }
       ],
       "classSections": [],
-      "geArea": "E"
+      "geArea": "F",
+      "specialGeArea": "Writing"
     },
     {
       "quarter": "20241",
@@ -2884,7 +2894,8 @@
         }
       ],
       "classSections": [],
-      "geArea": "E"
+      "geArea": "F",
+      "specialGeArea": "Writing"
     },
     {
       "quarter": "20241",
@@ -2936,7 +2947,8 @@
         }
       ],
       "classSections": [],
-      "geArea": "E"
+      "geArea": "F",
+      "specialGeArea": "Writing"
     },
     {
       "quarter": "20241",
@@ -3002,7 +3014,8 @@
         }
       ],
       "classSections": [],
-      "geArea": "D"
+      "geArea": "F",
+      "specialGeArea": "Writing"
     },
     {
       "quarter": "20241",
@@ -3050,7 +3063,8 @@
         }
       ],
       "classSections": [],
-      "geArea": "E"
+      "geArea": "F",
+      "specialGeArea": "Writing"
     },
     {
       "quarter": "20241",
@@ -3848,7 +3862,9 @@
           "geCollege": "ENGR"
         }
       ],
-      "classSections": []
+      "classSections": [],
+      "geArea": "F",
+      "specialGeArea": "Writing"
     },
     {
       "quarter": "20241",
@@ -3879,7 +3895,8 @@
           "geCollege": "ENGR"
         }
       ],
-      "classSections": []
+      "classSections": [],
+      "geArea": "F"
     },
     {
       "quarter": "20241",
@@ -3918,7 +3935,9 @@
           "geCollege": "ENGR"
         }
       ],
-      "classSections": []
+      "classSections": [],
+      "geArea": "F",
+      "specialGeArea": "Writing"
     },
     {
       "quarter": "20241",
@@ -3949,7 +3968,8 @@
           "geCollege": "ENGR"
         }
       ],
-      "classSections": []
+      "classSections": [],
+      "geArea": "F"
     },
     {
       "quarter": "20241",
@@ -4759,7 +4779,8 @@
         }
       ],
       "classSections": [],
-      "geArea": "E"
+      "geArea": "F",
+      "specialGeArea": "Writing"
     },
     {
       "quarter": "20241",
@@ -4791,7 +4812,8 @@
         }
       ],
       "classSections": [],
-      "geArea": "E"
+      "geArea": "F",
+      "specialGeArea": "Writing"
     },
     {
       "quarter": "20241",
@@ -4831,7 +4853,8 @@
         }
       ],
       "classSections": [],
-      "geArea": "E"
+      "geArea": "F",
+      "specialGeArea": "Writing"
     },
     {
       "quarter": "20241",
@@ -4862,7 +4885,9 @@
           "geCollege": "ENGR"
         }
       ],
-      "classSections": []
+      "classSections": [],
+      "geArea": "F",
+      "specialGeArea": "Writing"
     },
     {
       "quarter": "20241",
@@ -4914,7 +4939,8 @@
         }
       ],
       "classSections": [],
-      "geArea": "E"
+      "geArea": "F",
+      "specialGeArea": "Writing"
     },
     {
       "quarter": "20241",
@@ -4989,7 +5015,9 @@
           "geCollege": "ENGR"
         }
       ],
-      "classSections": []
+      "classSections": [],
+      "geArea": "F",
+      "specialGeArea": "Writing"
     },
     {
       "quarter": "20241",
@@ -5210,7 +5238,8 @@
         }
       ],
       "classSections": [],
-      "geArea": "E"
+      "geArea": "F",
+      "specialGeArea": "Writing"
     },
     {
       "quarter": "20241",
@@ -5449,7 +5478,9 @@
           "geCollege": "ENGR"
         }
       ],
-      "classSections": []
+      "classSections": [],
+      "geArea": "F",
+      "specialGeArea": "Writing"
     },
     {
       "quarter": "20241",
@@ -5480,7 +5511,8 @@
           "geCollege": "L&S "
         }
       ],
-      "classSections": []
+      "classSections": [],
+      "geArea": "F"
     },
     {
       "quarter": "20241",
@@ -5673,7 +5705,8 @@
           "geCollege": "ENGR"
         }
       ],
-      "classSections": []
+      "classSections": [],
+      "geArea": "F"
     },
     {
       "quarter": "20241",
@@ -5720,7 +5753,8 @@
           "geCollege": "ENGR"
         }
       ],
-      "classSections": []
+      "classSections": [],
+      "geArea": "F"
     },
     {
       "quarter": "20241",
@@ -6149,7 +6183,8 @@
         }
       ],
       "classSections": [],
-      "geArea": "E"
+      "geArea": "F",
+      "specialGeArea": "Writing"
     },
     {
       "quarter": "20241",
@@ -6219,7 +6254,8 @@
         }
       ],
       "classSections": [],
-      "geArea": "E"
+      "geArea": "F",
+      "specialGeArea": "Writing"
     },
     {
       "quarter": "20241",
@@ -6390,7 +6426,8 @@
         }
       ],
       "classSections": [],
-      "geArea": "E"
+      "geArea": "F",
+      "specialGeArea": "Writing"
     },
     {
       "quarter": "20241",
@@ -6558,7 +6595,8 @@
         }
       ],
       "classSections": [],
-      "geArea": "E"
+      "geArea": "F",
+      "specialGeArea": "Writing"
     },
     {
       "quarter": "20241",
@@ -6620,7 +6658,8 @@
           "geCollege": "ENGR"
         }
       ],
-      "classSections": []
+      "classSections": [],
+      "geArea": "F"
     },
     {
       "quarter": "20241",
@@ -6676,7 +6715,8 @@
         }
       ],
       "classSections": [],
-      "geArea": "D"
+      "geArea": "F",
+      "specialGeArea": "Writing"
     },
     {
       "quarter": "20241",
@@ -6795,7 +6835,8 @@
         }
       ],
       "classSections": [],
-      "geArea": "D"
+      "geArea": "F",
+      "specialGeArea": "Writing"
     },
     {
       "quarter": "20241",
@@ -7851,7 +7892,9 @@
           "geCollege": "CRST"
         }
       ],
-      "classSections": []
+      "classSections": [],
+      "geArea": "F",
+      "specialGeArea": "Writing"
     },
     {
       "quarter": "20241",

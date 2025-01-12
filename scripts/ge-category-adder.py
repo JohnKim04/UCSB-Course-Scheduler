@@ -12,10 +12,11 @@ with open('output.json', 'r') as file:
 # ]
 
 course_ids_to_match = [
-    "ARTHI6B", "BLST3", "BLST7", "BLST49B", "CLIT35", "CLIT50B", "CLIT50C",
-    "CLASS50", "EACS3", "EACS4A", "EACS5", "ENGL23", "FR50BX",
+    "ANTH3", "ART1A", "ARTHI6B", "CHST1B", "BLST7", "BLST14",
+    "BLST49B", "CLIT35", "MUS15", "HIST17B", "MUS10B",
     "FR50CX", "GER35", "HIST2B", "HIST4B", "HIST8A", "HIST20", "HIST46B", "HIST49B",
-    "PHIL1", "PHIL3", "PHIL4", "PHIL20B", "RGST3", "RGST4"
+    "PHIL1", "PHIL3", "PHIL4", "PHIL20B", "RGST3", "RGST4", "THTR1", "SPAN25", "SPAN16B",
+    "RGST14", "PSY10A", "POLS1", "PHIL20B", "PHIL7"
 ]
 
 # Function to process JSON data
@@ -27,7 +28,7 @@ def add_ge_area_to_courses(data):
         # Check if normalized courseId is in the list of IDs to match
         if normalized_course_id in course_ids_to_match:
             # Add the geArea attribute to the course
-            course["geArea"] = "E"
+            course["specialGeArea"] = "Writing"
 
 # Process the JSON
 add_ge_area_to_courses(json_data)
