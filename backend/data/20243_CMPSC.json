@@ -45,7 +45,7 @@
       "instructionTypeSecondary": "DIS",
       "onLineCourse": false,
       "deptCode": "CMPSC",
-      "prereqs": ["MATH 3A", "CS8"],
+      "prereqs": ["MATH 3A", "CMPSC 8"],
       "generalEducation": [],
       "classSections": []
     },
@@ -68,7 +68,7 @@
       "instructionTypeSecondary": "DIS",
       "onLineCourse": false,
       "deptCode": "CMPSC",
-      "prereqs": ["MATH 3B", "CS8"],
+      "prereqs": ["MATH 3B", "CMPSC 8"],
       "generalEducation": [],
       "classSections": []
     },
