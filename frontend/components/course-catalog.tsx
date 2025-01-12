@@ -16,21 +16,21 @@ import {
 } from '@/components/ui/select'
 import { usePlanStore } from '../store/plan-store'
 
-const departments: Department[] = ['All', 'CS', 'ASAM', 'ARTH', 'ENG', 'PHYS', 'MUSIC', 'MATH', 'PSTAT', 'WRIT']
-const majors = ['All', 'Computer Science', 'Engineering', 'Mathematics', 'Physics', 'Biology']
-
-const getCategoryColor = (category: string) => {
-  switch (category) {
-    case 'Core Course':
-      return 'bg-[#FDEADB]'
-    case 'Elective':
-      return 'bg-[#E7F3E0]'
-    case 'General Education':
-      return 'bg-[#FCE3F4]'
-    default:
-      return 'bg-gray-100'
-  }
-}
+//Review matching
+const departments: Department[] = [
+  'All',
+  'ANTH', 'ART', 'ART CS', 'ARTHI', 'ARTST', 'AS AM', 'ASTRO', 'BIOE', 'BIOL', 'BIOL CS',
+  'BL ST', 'BMSE', 'C LIT', 'CH E', 'CH ST', 'CHEM', 'CHEM CS', 'CHIN', 'CLASS', 'CMPSC',
+  'CMPSCCS', 'CMPTG', 'CMPTGCS', 'CNCSP', 'COMM', 'DANCE', 'DYNS', 'EACS', 'EARTH', 'ECE',
+  'ECON', 'ED', 'EDS', 'EEMB', 'ENGL', 'ENGR', 'ENV S', 'ES', 'ESM', 'ESS', 'FAMST', 'FEMST',
+  'FLMST', 'FR', 'GEN S', 'GEN SCS', 'GEOG', 'GER', 'GPS', 'GLOBL', 'GRAD', 'GREEK', 'HEB',
+  'HIST', 'IQB', 'INT', 'INT CS', 'ITAL', 'JAPAN', 'KOR', 'LATIN', 'LAIS', 'LING', 'LIT',
+  'LIT CS', 'MARSC', 'MARIN', 'MARINCS', 'MATR', 'MATH', 'MATH CS', 'ME', 'MAT', 'ME ST',
+  'MES', 'MS', 'MCDB', 'MUS', 'MUS CS', 'MUS A', 'PHIL', 'PHYS', 'PHYS CS', 'POL S', 'PORT',
+  'PSY', 'RG ST', 'RENST', 'RUSS', 'SLAV', 'SOC', 'SPAN', 'SHS', 'PSTAT', 'TMP', 'THTR',
+  'WRIT', 'W&L', 'W&L CSW', 'W&L CS'
+]
+const terms = ['All', 'Fall', 'Winter', 'Spring', 'Summer']
 
 function CourseCard({ course }: { course: Course }) {
   const [{ isDragging }, drag] = useDrag(() => ({
@@ -68,7 +68,7 @@ export function CourseCatalog() {
     courses,
     searchQuery,
     selectedDepartment,
-    selectedMajor,
+    selectedTerm,
     coursesInPlan,
     setSearchQuery,
     setSelectedDepartment,
@@ -82,12 +82,10 @@ export function CourseCatalog() {
         course.title.toLowerCase().includes(searchQuery.toLowerCase())
       const matchesDepartment =
         selectedDepartment === 'All' || course.code.startsWith(selectedDepartment)
-      const matchesMajor =
-        selectedMajor === 'All' || course.major === selectedMajor
       const isNotInPlan = !coursesInPlan.has(course.id)
-      return matchesSearch && matchesDepartment && matchesMajor && isNotInPlan
+      return matchesSearch && matchesDepartment && isNotInPlan
     })
-  }, [courses, searchQuery, selectedDepartment, selectedMajor, coursesInPlan])
+  }, [courses, searchQuery, selectedDepartment, coursesInPlan])
 
   return (
     <div className="p-4">

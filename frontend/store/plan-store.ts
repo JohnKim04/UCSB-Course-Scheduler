@@ -1,5 +1,42 @@
 import { create } from 'zustand'
 import { Course, Department, PlanYear } from '../types/course'
+import courseData1 from '../../backend/data/20241_CMPSC.json'
+import courseData2 from '../../backend/data/20241_Lower_GE.json'
+
+// Combine all course data
+const allCourseData = {
+  classes: [
+    ...courseData1.classes,
+    ...courseData2.classes,
+  ]
+}
+
+// Helper function to transform the json data into our Course format
+const transformCourses = (): Course[] => {
+  return allCourseData.classes.map(classData => ({
+    id: classData.courseId.trim().toLowerCase().replace(/\s+/g, ''),
+    code: classData.courseId.trim(),
+    title: classData.title,
+    credits: classData.unitsFixed || classData.unitsVariableLow || 0,
+    category: determineCategory(classData.courseId),
+    description: classData.description,
+    prerequisites: classData.prereqs,
+    generalEducation: classData.generalEducation.map(ge => ge.geCode.trim())
+  }))
+}
+
+// Helper function to determine course category GONNA NEED NEW LOGIC
+const determineCategory = (courseId: string): string => {
+  const code = courseId.trim()
+  if (code.startsWith('CMPSC')) {
+    if (parseInt(code.match(/\d+/)?.[0] || '0') < 100) {
+      return 'Lower Division'
+    } else if (parseInt(code.match(/\d+/)?.[0] || '0') < 200) {
+      return 'Upper Division'
+    }
+  }
+  return 'General Education'
+}
 
 interface PlanStore {
   courses: Course[]
@@ -19,152 +56,8 @@ interface PlanStore {
 }
 
 export const usePlanStore = create<PlanStore>((set, get) => ({
-  courses: [
-    {
-      id: 'cs101',
-      code: 'CS101',
-      title: 'Introduction to Programming 1',
-      credits: 3,
-      category: 'Core Course',
-      major: 'Computer Science',
-    },
-    {
-      id: 'cs130a',
-      code: 'CS130A',
-      title: 'Data Structures and Algorithms I',
-      credits: 4,
-      category: 'Core Course',
-      major: 'Computer Science',
-    },
-    {
-      id: 'cs130b',
-      code: 'CS130B',
-      title: 'Data Structures and Algorithms II',
-      credits: 4,
-      category: 'Core Course',
-      major: 'Computer Science',
-    },
-    {
-      id: 'cs154',
-      code: 'CS154',
-      title: 'Computer Architecture',
-      credits: 4,
-      category: 'Core Course',
-      major: 'Computer Science',
-    },
-    {
-      id: 'cs160',
-      code: 'CS160',
-      title: 'Translation of Programming Languages',
-      credits: 4,
-      category: 'Core Course',
-      major: 'Computer Science',
-    },
-    {
-      id: 'cs170',
-      code: 'CS170',
-      title: 'Operating Systems',
-      credits: 4,
-      category: 'Core Course',
-      major: 'Computer Science',
-    },
-    {
-      id: 'cs176a',
-      code: 'CS176A',
-      title: 'Introduction to Computer Communication Networks',
-      credits: 4,
-      category: 'Elective',
-      major: 'Computer Science',
-    },
-    {
-      id: 'cs180',
-      code: 'CS180',
-      title: 'Computer Graphics',
-      credits: 4,
-      category: 'Elective',
-      major: 'Computer Science',
-    },
-    {
-      id: 'asam1',
-      code: 'ASAM1',
-      title: 'Introduction to Asian American Studies',
-      credits: 4,
-      category: 'General Education',
-      major: 'Asian American Studies',
-    },
-    {
-      id: 'arth2',
-      code: 'ARTH2',
-      title: 'American Art History',
-      credits: 4,
-      category: 'General Education',
-      major: 'Art History',
-    },
-    {
-      id: 'eng2',
-      code: 'ENG2',
-      title: 'English Composition',
-      credits: 4,
-      category: 'General Education',
-      major: 'English',
-    },
-    {
-      id: 'music15',
-      code: 'MUSIC15',
-      title: 'Music Appreciation',
-      credits: 4,
-      category: 'General Education',
-      major: 'Music',
-    },
-    {
-      id: 'phys1',
-      code: 'PHYS1',
-      title: 'Basic Physics',
-      credits: 4,
-      category: 'General Education',
-      major: 'Physics',
-    },
-    {
-      id: 'math3a',
-      code: 'MATH3A',
-      title: 'Calculus with Applications, First Course',
-      credits: 4,
-      category: 'Core Course',
-      major: 'Mathematics',
-    },
-    {
-      id: 'math3b',
-      code: 'MATH3B',
-      title: 'Calculus with Applications, Second Course',
-      credits: 4,
-      category: 'Core Course',
-      major: 'Mathematics',
-    },
-    {
-      id: 'math4a',
-      code: 'MATH4A',
-      title: 'Linear Algebra with Applications',
-      credits: 4,
-      category: 'Core Course',
-      major: 'Mathematics',
-    },
-    {
-      id: 'pstat120a',
-      code: 'PSTAT120A',
-      title: 'Probability and Statistics',
-      credits: 4,
-      category: 'Core Course',
-      major: 'Statistics',
-    },
-    {
-      id: 'writ50',
-      code: 'WRIT50',
-      title: 'Writing for Science and Technology',
-      credits: 4,
-      category: 'General Education',
-      major: 'Writing',
-    },
-  ],
+  // Initialize courses using the transformed JSON data
+  courses: transformCourses(),
   searchQuery: '',
   selectedDepartment: 'All',
   selectedTerm: 'All',
@@ -192,9 +85,11 @@ export const usePlanStore = create<PlanStore>((set, get) => ({
     },
   ],
   coursesInPlan: new Set<string>(),
+  
   setSearchQuery: (query) => set({ searchQuery: query }),
   setSelectedDepartment: (department) => set({ selectedDepartment: department }),
   setSelectedTerm: (term) => set({ selectedTerm: term }),
+  
   addCourseToYear: (course, year, term) =>
     set((state) => {
       const yearPlans = [...state.yearPlans]
@@ -206,6 +101,7 @@ export const usePlanStore = create<PlanStore>((set, get) => ({
       coursesInPlan.add(course.id)
       return { yearPlans, coursesInPlan }
     }),
+    
   removeCourseFromYear: (courseId, year, term) =>
     set((state) => {
       const yearPlans = [...state.yearPlans]
@@ -219,20 +115,24 @@ export const usePlanStore = create<PlanStore>((set, get) => ({
       coursesInPlan.delete(courseId)
       return { yearPlans, coursesInPlan }
     }),
+    
   getProgress: () => {
     const state = get()
-    const totalRequiredCourses = 12 // Adjust based on your curriculum
+    const requiredCourses = state.courses.filter(course => 
+      course.category === 'Core Course' || course.category === 'Lower Division' || 
+      course.category === 'Upper Division'
+    ).length
+    
     const completedCourses = state.yearPlans
       .flatMap((year) =>
         Object.values(year.terms).flatMap((courses) => courses.map((c) => c.code))
       )
     const uniqueCompletedCourses = Array.from(new Set(completedCourses))
     return {
-      percentage: Math.round((uniqueCompletedCourses.length / totalRequiredCourses) * 100),
+      percentage: Math.round((uniqueCompletedCourses.length / requiredCourses) * 100),
       completedCourses: uniqueCompletedCourses,
     }
   },
   selectedMajor: 'All',
   setSelectedMajor: (major) => set({ selectedMajor: major }),
 }))
-
