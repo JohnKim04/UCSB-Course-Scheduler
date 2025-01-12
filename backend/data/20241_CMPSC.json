@@ -23,7 +23,6 @@
         "onLineCourse": false,
         "deptCode": "CMPSC",
         "prereqs": [],
-        "prereqs": [],
         "generalEducation": [
           {
             "geCode": "C  ",
@@ -56,7 +55,6 @@
         "onLineCourse": false,
         "deptCode": "CMPSC",
         "prereqs": ["CMPSC 5A"],
-        "prereqs": ["CMPSC 5A"],
         "generalEducation": [
           {
             "geCode": "C  ",
@@ -88,7 +86,6 @@
         "instructionTypeSecondary": "DIS",
         "onLineCourse": false,
         "deptCode": "CMPSC",
-        "prereqs": ["CMPSC 8"],
         "prereqs": ["CMPSC 8"],
         "generalEducation": [],
         "classSections": []
@@ -159,7 +156,6 @@
         "onLineCourse": false,
         "deptCode": "CMPSC",
         "prereqs": ["CMPSC 16", "MATH 4A"],
-        "prereqs": ["CMPSC 16", "MATH 4A"],
         "generalEducation": [],
         "classSections": []
       },
@@ -183,7 +179,6 @@
         "onLineCourse": false,
         "deptCode": "CMPSC",
         "prereqs": ["CMPSC 16"],
-        "prereqs": ["CMPSC 16"],
         "generalEducation": [],
         "classSections": []
       },
@@ -206,7 +201,6 @@
         "instructionTypeSecondary": null,
         "onLineCourse": false,
         "deptCode": "CMPSC",
-        "prereqs": [],
         "prereqs": [],
         "generalEducation": [],
         "classSections": []
@@ -277,7 +271,6 @@
         "onLineCourse": false,
         "deptCode": "CMPSC",
         "prereqs": ["CMPSC 130A"],
-        "prereqs": ["CMPSC 130A"],
         "generalEducation": [],
         "classSections": []
       },
@@ -324,7 +317,6 @@
         "onLineCourse": false,
         "deptCode": "CMPSC",
         "prereqs": ["CMPSC 32"],
-        "prereqs": ["CMPSC 32"],
         "generalEducation": [],
         "classSections": []
       },
@@ -347,7 +339,6 @@
         "instructionTypeSecondary": "DIS",
         "onLineCourse": false,
         "deptCode": "CMPSC",
-        "prereqs": ["CMPSC 32", "CMPSC 64"],
         "prereqs": ["CMPSC 32", "CMPSC 64"],
         "generalEducation": [],
         "classSections": []
@@ -395,7 +386,6 @@
         "onLineCourse": false,
         "deptCode": "CMPSC",
         "prereqs": ["CMPSC 130A", "CMPSC 138"],
-        "prereqs": ["CMPSC 130A", "CMPSC 138"],
         "generalEducation": [],
         "classSections": []
       },
@@ -418,7 +408,6 @@
         "instructionTypeSecondary": "DIS",
         "onLineCourse": false,
         "deptCode": "CMPSC",
-        "prereqs": ["CMPSC 130A"],
         "prereqs": ["CMPSC 130A"],
         "generalEducation": [],
         "classSections": []
@@ -443,7 +432,6 @@
         "onLineCourse": false,
         "deptCode": "CMPSC",
         "prereqs": ["CMPSC 130A"],
-        "prereqs": ["CMPSC 130A"],
         "generalEducation": [],
         "classSections": []
       },
@@ -466,7 +454,6 @@
         "instructionTypeSecondary": "DIS",
         "onLineCourse": false,
         "deptCode": "CMPSC",
-        "prereqs": ["CMPSC 130A", "CMPSC 154"],
         "prereqs": ["CMPSC 130A", "CMPSC 154"],
         "generalEducation": [],
         "classSections": []
@@ -491,7 +478,6 @@
         "onLineCourse": false,
         "deptCode": "CMPSC",
         "prereqs": ["CMPSC 32", "PSTAT 120A"],
-        "prereqs": ["CMPSC 32", "PSTAT 120A"],
         "generalEducation": [],
         "classSections": []
       },
@@ -515,7 +501,6 @@
         "onLineCourse": false,
         "deptCode": "CMPSC",
         "prereqs": ["CMPSC 24", "CMPSC 40", "PSTAT 120A"],
-        "prereqs": ["CMPSC 24", "CMPSC 40", "PSTAT 120A"],
         "generalEducation": [],
         "classSections": []
       },
@@ -538,7 +523,6 @@
         "instructionTypeSecondary": "DIS",
         "onLineCourse": false,
         "deptCode": "CMPSC",
-        "prereqs": [],
         "prereqs": [],
         "generalEducation": [],
         "classSections": []
