@@ -40,11 +40,11 @@ const loadCourseData = (): Course[] => {
     }
   })
 
-  // Convert Set to Array for the terms field
+  // Convert Set to Array for the terms field and sort courses alphabetically by code
   return Array.from(courseSet.values()).map(course => ({
     ...course,
     terms: Array.from(course.terms),
-  }))
+  })).sort((a, b) => a.code.localeCompare(b.code))
 }
 
 // Helper function to determine course category
@@ -80,9 +80,29 @@ interface PlanStore {
 export const usePlanStore = create<PlanStore>((set, get) => {
   const courses = loadCourseData()
 
-  const filteredCourses = (term: string): Course[] => {
-    if (term === 'All') return courses
-    return courses.filter(course => course.terms.includes(term))
+  const filteredCourses = (term: string, searchQuery: string, selectedDepartment: Department): Course[] => {
+    let filtered = courses
+
+    // Filter by term
+    if (term !== 'All') {
+      filtered = filtered.filter(course => course.terms.includes(term))
+    }
+
+    // Filter by search query
+    if (searchQuery) {
+      filtered = filtered.filter(course =>
+        course.code.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        course.title.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+    }
+
+    // Filter by department
+    if (selectedDepartment !== 'All') {
+      filtered = filtered.filter(course => course.code.startsWith(selectedDepartment))
+    }
+
+    // Sort alphabetically by course code
+    return filtered.sort((a, b) => a.code.localeCompare(b.code))
   }
 
   return {
@@ -111,10 +131,10 @@ export const usePlanStore = create<PlanStore>((set, get) => {
     coursesInPlan: new Set<string>(),
     setSearchQuery: (query) => set({ searchQuery: query }),
     setSelectedDepartment: (department) => set({ selectedDepartment: department }),
-    setSelectedTerm: (term) => set({
+    setSelectedTerm: (term) => set((state) => ({
       selectedTerm: term,
-      courses: filteredCourses(term),
-    }),
+      courses: filteredCourses(term, state.searchQuery, state.selectedDepartment),
+    })),
     addCourseToYear: (course, year, term) =>
       set((state) => {
         const yearPlans = [...state.yearPlans]

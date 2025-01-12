@@ -76,16 +76,16 @@ function CourseCard({ course }: { course: Course }) {
 }
 
 export function CourseCatalog() {
-  const {
-    courses,
-    searchQuery,
-    selectedDepartment,
-    selectedTerm,
-    coursesInPlan,
-    setSearchQuery,
-    setSelectedDepartment,
-    setSelectedTerm,
-  } = usePlanStore()
+  const courses = usePlanStore((state) => state.courses);
+  const searchQuery = usePlanStore((state) => state.searchQuery);
+  const selectedDepartment = usePlanStore((state) => state.selectedDepartment);
+  const selectedTerm = usePlanStore((state) => state.selectedTerm);
+  const coursesInPlan = usePlanStore((state) => state.coursesInPlan);
+
+  const setSearchQuery = usePlanStore((state) => state.setSearchQuery);
+  const setSelectedDepartment = usePlanStore((state) => state.setSelectedDepartment);
+  const setSelectedTerm = usePlanStore((state) => state.setSelectedTerm);
+
 
   const filteredCourses = useMemo(() => {
     return courses.filter((course) => {
