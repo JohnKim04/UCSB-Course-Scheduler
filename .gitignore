@@ -1,0 +1,69 @@
+# General
+.DS_Store
+Thumbs.db
+
+# Node.js (React Frontend)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build files
+build/
+dist/
+
+# React environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Python (FastAPI Backend)
+*.py[cod]
+__pycache__/
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+*.manifest
+
+# Virtual Environment
+venv/
+.venv/
+
+# FastAPI logs
+*.log
+logs/
+
+# IDE and Editor settings
+.vscode/
+.idea/
+*.sublime-workspace
+
+# Coverage reports
+.coverage
+*.cover
+coverage/
+htmlcov/
+
+# Jupyter Notebook checkpoints (if applicable)
+.ipynb_checkpoints/
+
+# Test outputs
+*.pytest_cache/
+.tox/
+.nox/
+
+# Temporary files
+*.tmp
+*.swp
+*.out
+*.pid
+
+# Git generated files
+*.orig
+
+# Optional: Local environment setup scripts
+local_settings.py

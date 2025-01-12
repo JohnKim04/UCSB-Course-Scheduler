@@ -1,0 +1,20 @@
+[
+    {
+        "course_id": "CS16",
+        "title": "Problem Solving with Computers I",
+        "units": 4,
+        "prerequisites": []
+    },
+    {
+        "course_id": "CS24",
+        "title": "Problem Solving with Computers II",
+        "units": 4,
+        "prerequisites": ["CS16"]
+    },
+    {
+        "course_id": "CS32",
+        "title": "Problem Solving with Computers III",
+        "units": 4,
+        "prerequisites": ["CS24"]
+    }
+]
