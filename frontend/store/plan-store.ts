@@ -1,5 +1,42 @@
 import { create } from 'zustand'
 import { Course, Department, PlanYear } from '../types/course'
+import courseData1 from '../../backend/data/20241_CMPSC.json'
+import courseData2 from '../../backend/data/20241_Lower_GE.json'
+
+// Combine all course data
+const allCourseData = {
+  classes: [
+    ...courseData1.classes,
+    ...courseData2.classes,
+  ]
+}
+
+// Helper function to transform the json data into our Course format
+const transformCourses = (): Course[] => {
+  return allCourseData.classes.map(classData => ({
+    id: classData.courseId.trim().toLowerCase().replace(/\s+/g, ''),
+    code: classData.courseId.trim(),
+    title: classData.title,
+    credits: classData.unitsFixed || classData.unitsVariableLow || 0,
+    category: determineCategory(classData.courseId),
+    description: classData.description,
+    prerequisites: classData.prereqs,
+    generalEducation: classData.generalEducation.map(ge => ge.geCode.trim())
+  }))
+}
+
+// Helper function to determine course category GONNA NEED NEW LOGIC
+const determineCategory = (courseId: string): string => {
+  const code = courseId.trim()
+  if (code.startsWith('CMPSC')) {
+    if (parseInt(code.match(/\d+/)?.[0] || '0') < 100) {
+      return 'Lower Division'
+    } else if (parseInt(code.match(/\d+/)?.[0] || '0') < 200) {
+      return 'Upper Division'
+    }
+  }
+  return 'General Education'
+}
 
 interface PlanStore {
   courses: Course[]
@@ -7,6 +44,7 @@ interface PlanStore {
   selectedDepartment: Department
   selectedTerm: string
   yearPlans: PlanYear[]
+  coursesInPlan: Set<string>
   setSearchQuery: (query: string) => void
   setSelectedDepartment: (department: Department) => void
   setSelectedTerm: (term: string) => void
@@ -16,16 +54,8 @@ interface PlanStore {
 }
 
 export const usePlanStore = create<PlanStore>((set, get) => ({
-  courses: [
-    {
-      id: 'cs101',
-      code: 'CS101',
-      title: 'Introduction to Programming 1',
-      credits: 3,
-      category: 'Core Course',
-    },
-    // Add more courses here...
-  ],
+  // Initialize courses using the transformed JSON data
+  courses: transformCourses(),
   searchQuery: '',
   selectedDepartment: 'All',
   selectedTerm: 'All',
@@ -39,11 +69,25 @@ export const usePlanStore = create<PlanStore>((set, get) => ({
         Summer: [],
       },
     },
-    // Add more years as needed
+    {
+      year: 2,
+      terms: { Fall: [], Winter: [], Spring: [], Summer: [] },
+    },
+    {
+      year: 3,
+      terms: { Fall: [], Winter: [], Spring: [], Summer: [] },
+    },
+    {
+      year: 4,
+      terms: { Fall: [], Winter: [], Spring: [], Summer: [] },
+    },
   ],
+  coursesInPlan: new Set<string>(),
+  
   setSearchQuery: (query) => set({ searchQuery: query }),
   setSelectedDepartment: (department) => set({ selectedDepartment: department }),
   setSelectedTerm: (term) => set({ selectedTerm: term }),
+  
   addCourseToYear: (course, year, term) =>
     set((state) => {
       const yearPlans = [...state.yearPlans]
@@ -51,8 +95,11 @@ export const usePlanStore = create<PlanStore>((set, get) => ({
       if (yearIndex !== -1) {
         yearPlans[yearIndex].terms[term].push(course)
       }
-      return { yearPlans }
+      const coursesInPlan = new Set(state.coursesInPlan)
+      coursesInPlan.add(course.id)
+      return { yearPlans, coursesInPlan }
     }),
+    
   removeCourseFromYear: (courseId, year, term) =>
     set((state) => {
       const yearPlans = [...state.yearPlans]
@@ -62,19 +109,26 @@ export const usePlanStore = create<PlanStore>((set, get) => ({
           (c) => c.id !== courseId
         )
       }
-      return { yearPlans }
+      const coursesInPlan = new Set(state.coursesInPlan)
+      coursesInPlan.delete(courseId)
+      return { yearPlans, coursesInPlan }
     }),
+    
   getProgress: () => {
     const state = get()
-    const totalRequiredCourses = 10 // Example: adjust based on actual requirements
+    const requiredCourses = state.courses.filter(course => 
+      course.category === 'Core Course' || course.category === 'Lower Division' || 
+      course.category === 'Upper Division'
+    ).length
+    
     const completedCourses = state.yearPlans
       .flatMap((year) =>
         Object.values(year.terms).flatMap((courses) => courses.map((c) => c.code))
       )
+    const uniqueCompletedCourses = Array.from(new Set(completedCourses))
     return {
-      percentage: Math.round((completedCourses.length / totalRequiredCourses) * 100),
-      completedCourses,
+      percentage: Math.round((uniqueCompletedCourses.length / requiredCourses) * 100),
+      completedCourses: uniqueCompletedCourses,
     }
   },
 }))
-

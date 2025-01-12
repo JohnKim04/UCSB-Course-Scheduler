@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import { useDrop } from 'react-dnd'
 import { Card, CardContent } from '@/components/ui/card'
 import {
@@ -30,14 +31,19 @@ function TermDropZone({ year, term }: { year: number; term: Term }) {
     removeCourseFromYear(course.id, year, term)
   }
 
+  const totalCredits = courses.reduce((sum, course) => sum + course.credits, 0)
+
   return (
-    <div ref={drop} className={`p-4 rounded-lg border-2 border-dashed min-h-[200px] ${
-      isOver ? 'border-primary bg-primary/10' : 'border-muted'
-    }`}>
+    <div
+      ref={drop}
+      className={`p-4 rounded-lg border-2 border-dashed min-h-[200px] ${
+        isOver ? 'border-primary bg-primary/10' : 'border-muted'
+      }`}
+    >
       <h4 className="font-medium mb-2">{term}</h4>
       {courses.map((course) => (
-        <Card 
-          key={course.id} 
+        <Card
+          key={course.id}
           className="mb-2 cursor-pointer hover:bg-muted/50 transition-colors"
           onClick={() => handleRemoveCourse(course)}
         >
@@ -49,18 +55,23 @@ function TermDropZone({ year, term }: { year: number; term: Term }) {
           </CardContent>
         </Card>
       ))}
+      <div className="mt-4 text-sm font-medium">Total Credits: {totalCredits}</div>
     </div>
   )
 }
 
 export function FourYearPlan() {
+  const [selectedYear, setSelectedYear] = useState(1)
   const terms: Term[] = ['Fall', 'Winter', 'Spring', 'Summer']
 
   return (
     <div className="p-4">
       <div className="flex items-center gap-4 mb-4">
         <h2 className="text-lg font-semibold">Four-Year Plan</h2>
-        <Select defaultValue="1">
+        <Select
+          value={selectedYear.toString()}
+          onValueChange={(value) => setSelectedYear(parseInt(value))}
+        >
           <SelectTrigger className="w-[180px]">
             <SelectValue placeholder="Select Year" />
           </SelectTrigger>
@@ -73,9 +84,10 @@ export function FourYearPlan() {
           </SelectContent>
         </Select>
       </div>
+      <h3 className="text-lg font-semibold mt-4 mb-2">Year {selectedYear}</h3>
       <div className="grid grid-cols-4 gap-4">
         {terms.map((term) => (
-          <TermDropZone key={term} year={1} term={term} />
+          <TermDropZone key={`${selectedYear}-${term}`} year={selectedYear} term={term} />
         ))}
       </div>
     </div>
